@@ -1,4 +1,4 @@
-# Assessment Project: Todo App
+#Todo App
 
 ## Tech Stack: MERN Stack with Typescript and Tailwind CSS in frontend
 
