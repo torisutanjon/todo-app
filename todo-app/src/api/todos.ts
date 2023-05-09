@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const todoAPI = {
-    createTodo : async (title:string, body:string, userid:string) => {
+    createTodo : async (title:string, body:string, userid:string, username:string) => {
        try {
          const res = await axios({
             headers: {
@@ -12,7 +12,8 @@ const todoAPI = {
             data:{
                 title,
                 body,
-                userid
+                userid,
+                username
             }
         })
 
@@ -23,7 +24,7 @@ const todoAPI = {
         window.alert(error?.response?.data?.message)
        }
     },
-    getTodo: async (userID:String) => {
+    getTodo: async () => {
         try {
             const res = await axios({
                 headers: {
@@ -31,9 +32,6 @@ const todoAPI = {
                 },
                 method: "POST",
                 url: "/todo/get-todos",
-                data: {
-                    userID
-                }
             })
             return res?.data?.todos
         } catch (error:any) {
@@ -59,6 +57,48 @@ const todoAPI = {
         } catch (error:any) {
             console.log(error)
             window.alert(error?.response?.data?.message)
+        }
+    },
+    updateTodo: async (todoId:string, title:string, body:string) => {
+        try {
+            const res = await axios({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                url:"/todo/update-todo",
+                data: {
+                    todoId,
+                    title,
+                    body
+                }
+            })
+
+            window.alert(res?.data?.message)
+            window.location.href = "/"
+        } catch (error:any) {
+            console.log(error)
+            return window.alert(error?.response?.data?.message)
+        }
+    },
+    deleteTodo: async (todoID:string) => {
+        try {
+            const res = await axios({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                url:"/todo/delete-todo",
+                data: {
+                    todoID
+                }
+            })
+
+            window.alert(res?.data?.message)
+            window.location.href = "/"
+        } catch (error:any) {
+            console.log(error)
+            return window.alert(error?.response?.data?.message)
         }
     }
 }

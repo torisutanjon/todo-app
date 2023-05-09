@@ -10,9 +10,18 @@ const TODO_SCHEMA = new mongoose.Schema(
       type: String,
       required: true,
     },
-    creator: {
+    creatorID: {
       type: String,
       required: true,
+    },
+    creatorName: {
+      type: String,
+      required: true,
+    },
+    comments: {
+      type: Array,
+      required: true,
+      default: [],
     },
   },
   { collection: "todos" }

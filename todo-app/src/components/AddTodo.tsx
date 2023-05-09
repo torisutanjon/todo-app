@@ -23,7 +23,8 @@ const AddTodo = ({ setElement }: PropTypes) => {
     const res = await todoAPI.createTodo(
       title.value,
       body.value,
-      decodedToken.userid
+      decodedToken.userid,
+      decodedToken.username
     );
   };
 
