@@ -19,7 +19,7 @@ const Home = () => {
   const [todoDetails, setTodoDetails] = useState(
     <>
       <div className="relative h-full w-full flex items-center justify-center">
-        <p className="text-[24px] text-[#8F43EE]">
+        <p className="text-[24px] text-black">
           Select a todo to display or create one
         </p>
       </div>
@@ -50,7 +50,7 @@ const Home = () => {
   ) => {
     return (
       <div
-        className="relative h-[50px] w-full flex flex-col items-center justify-center text-[#8F43EE] hover:bg-[#8F43EE] hover:text-white cursor-pointer"
+        className="relative mx-auto h-[50px] w-[95%] flex flex-col items-center justify-center border-[1px] border-white/50 text-white cursor-pointer hover:bg-white/50"
         key={id}
         onClick={() => displayTodos(id, creator)}
       >
@@ -102,12 +102,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-screen top-0 left-0 bg-[#2D2727] flex flex-row">
+    <div className="relative h-screen w-screen top-0 left-0 bg-white flex flex-row">
       {component}
-      <div className="relative h-full w-[15%] bg-[#413543] flex flex-col items-center justify-start">
+      <div className="relative h-full w-[15%] bg-[#343434] flex flex-col items-center justify-start">
         <div className="relative h-[20%] w-full flex items-start justify-center">
           <button
-            className="relative h-[25px] w-[150px] mt-[15%] rounded-[8px] border-[1px] border-[#8F43EE] text-[12px] text-[#8F43EE] hover:bg-[#8F43EE] hover:text-white"
+            className="relative h-[35px] w-[150px] mt-[15%] bg-white text-[12px] text-black"
             onClick={() => addTodoHandler()}
           >
             + Add To Do
@@ -115,7 +115,7 @@ const Home = () => {
         </div>
         <div className="relative h-[80%] w-full">
           <div className="relative h-[20%] w-full flex items-center justify-start">
-            <p className="ml-[10%] font-medium text-[#8F43EE]">To do list:</p>
+            <p className="ml-[10%] font-medium text-white">To do list:</p>
           </div>
           <div className="relative max-h-[50%] w-full overflow-y-auto">
             {todosState?.length === 0 ? (
@@ -136,7 +136,7 @@ const Home = () => {
       <div className="relative h-full w-[85%] flex flex-col">
         <div className="relative h-[15%] w-full flex items-center justify-end">
           <button
-            className="relative h-[45px] w-[200px] border-[1px] border-[#8F43EE] rounded-[10px] mr-[5%] text-[#8F43EE] text-[14px] hover:bg-[#8F43EE] hover:text-white"
+            className="relative h-[45px] w-[200px] mr-[5%] bg-[#383838] text-white text-[12px] "
             onClick={() => userHandler()}
           >
             {username === null ? (

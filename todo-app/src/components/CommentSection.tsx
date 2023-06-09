@@ -102,18 +102,16 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
   }, [todoID]);
 
   return (
-    <div className="relative h-full w-[75%] ml-[5%] overflow-hidden overflow-y-auto">
-      <div className="relative h-[35px] w-full my-[10px] flex flex-row items-center justify-between">
-        <div className="relative h-full w-[75%] rounded-[4px] overflow-hidden">
-          <input
-            type="text"
-            placeholder="Add Comment"
-            id="add_comment_input"
-            className="relative h-full w-full outline-none bg-transparent border-b-[2px] border-b-[#8F43EE] pl-[5px] text-[14px]"
-          />
-        </div>
+    <div className="relative h-full w-full overflow-hidden overflow-y-auto">
+      <div className="relative h-[80px] w-[95%] flex flex-col items-end justify-between">
+        <input
+          type="text"
+          placeholder="Add Comment"
+          id="add_comment_input"
+          className="relative h-[35px] w-full outline-none bg-transparent border-b-[1px] border-b-black pl-[5px] text-[14px]"
+        />
         <button
-          className="relative mr-[10px] h-[25px] w-[100px] text-[12px] outline-none border-[1px] border-[#8F43EE] rounded-[50px] hover:bg-[#8F43EE] hover:text-[white]"
+          className="h-[35px] w-[125px] bg-[#434343] text-[12px] text-white"
           onClick={() => addCommentHandler()}
         >
           Add Comment
@@ -125,40 +123,34 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
         comments?.map((comment: CommentTypes, index: number) => {
           return (
             <div
-              className="relative h-[75px] w-full my-[15px] flex flex-row"
-              key={comment.commentid}
+              className="relative h-[165px] w-[95%] mt-[15px] flex flex-col items-end justify-between"
+              key={`${comment}${index}`}
             >
-              <div className="relative h-full w-[75%] rounded-[4px] border-[1px] border-[#8F43EE] flex flex-col justify-evenly overflow-y-auto">
-                <input
-                  type="text"
-                  id="update_comment_input"
-                  value={
-                    commentBody === undefined ? "" : commentBody[index].body
-                  }
-                  readOnly={
-                    token === null || token.userid !== comment.creatorID
-                      ? true
-                      : false
-                  }
-                  onChange={(e) => {
-                    const updatedComment = { ...comment, body: e.target.value };
-                    const updatedComments = comments?.map((originalComment) =>
-                      originalComment.commentid === comment.commentid
-                        ? updatedComment
-                        : originalComment
-                    );
-                    setCommentBody(updatedComments);
-                  }}
-                  className="relative h-[35px] w-2/3 border-b-[1px] border-b-[#8F43EE] bg-transparent ml-[5px] pl-[5px] outline-none"
-                />
-                <p className="self-end m-[10px]">By: {comment.creatorName}</p>
-              </div>
-              <div className="relative h-[full] w-[25%] flex flex-col items-center justify-start">
+              <textarea
+                id="update_comment_input"
+                value={commentBody === undefined ? "" : commentBody[index].body}
+                readOnly={
+                  token === null || token.userid !== comment.creatorID
+                    ? true
+                    : false
+                }
+                onChange={(e) => {
+                  const updatedComment = { ...comment, body: e.target.value };
+                  const updatedComments = comments?.map((originalComment) =>
+                    originalComment.commentid === comment.commentid
+                      ? updatedComment
+                      : originalComment
+                  );
+                  setCommentBody(updatedComments);
+                }}
+                className="relative h-[110px] w-full border-[1px] border-black bg-transparent pl-[5px] outline-none"
+              ></textarea>
+              <div className="w-[60%] flex flex-row items-center justify-between">
                 {token === null || token.userid !== comment.creatorID ? (
                   <></>
                 ) : (
                   <button
-                    className="relative mr-[10px] h-[25px] w-[100px] text-[12px] outline-none border-[1px] border-[#8F43EE] rounded-[50px] hover:bg-[#8F43EE] hover:text-[white] mb-[15px]"
+                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
                     onClick={() =>
                       updateCommentHandler(comment.commentid, index)
                     }
@@ -170,7 +162,7 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
                   <></>
                 ) : (
                   <button
-                    className="relative mr-[10px] h-[25px] w-[100px] text-[12px] outline-none border-[1px] border-[#8F43EE] rounded-[50px] hover:bg-[#8F43EE] hover:text-[white]"
+                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
                     onClick={() =>
                       deleteCommentHandler(comment.commentid, todoID)
                     }
@@ -184,7 +176,7 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
                 ) : todoCreator !== token.userid &&
                   token.userid === comment.creatorID ? (
                   <button
-                    className="relative mr-[10px] h-[25px] w-[100px] text-[12px] outline-none border-[1px] border-[#8F43EE] rounded-[50px] hover:bg-[#8F43EE] hover:text-[white]"
+                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
                     onClick={() =>
                       deleteCommentHandler(comment.commentid, todoID)
                     }

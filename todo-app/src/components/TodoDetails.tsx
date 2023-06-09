@@ -109,38 +109,41 @@ const TodoDetails = ({ id, creator }: PropsType) => {
   }, [title, body]);
 
   return (
-    <div className="relative h-full w-full flex flex-col items-center justify-start text-[#8F43EE]">
-      <div className="relative mt-[10%] h-[40%] w-[80%] flex flex-col items-start justify-start text-[18px]">
-        <div className="relative w-full flex flex-row">
-          <p>Todo Title:</p>
-          <input
-            type="text"
-            id="title_input"
-            value={title}
-            onChange={titleOnchange}
-            readOnly={titleReadOnly}
-            onClick={() => editTitleHandler()}
-            className="ml-[5%] bg-[#2D2727] border-b-[2px] border-b-[#8F43EE] outline-none"
-          />
-        </div>
-        <br />
-        <div className="relative w-full flex flex-row">
-          <p>Todo Body: </p>
-          <textarea
-            name=""
-            id=""
-            className="h-[150px] w-[300px] ml-[5%] bg-[#413543] border-[2] border-[#8F43EE] outline-none p-[5px] text-[14px]"
-            value={body}
-            onChange={bodyOnchange}
-            readOnly={bodyReadOnly}
-            onClick={() => editBodyHandler()}
-          ></textarea>
-          <div className="relative flex flex-col">
+    <div className="relative h-full w-full flex flex-col items-center justify-start text-black">
+      <div className="relative h-[40%] w-[80%] flex items-start justify-start text-[18px]">
+        <div className="relative h-[80%] w-[90%] gridClass">
+          <div className="flex items-center justify-end">
+            <p>Todo Title:</p>
+          </div>
+          <div className="flex items-center justify-start">
+            <input
+              type="text"
+              id="title_input"
+              value={title}
+              onChange={titleOnchange}
+              readOnly={titleReadOnly}
+              onClick={() => editTitleHandler()}
+              className="relative pl-[5px] h-[60px] w-[400px] outline-none border-[1px] border-black/50"
+            />
+          </div>
+          <div className="flex items-start justify-end">
+            <p>Todo Body:</p>
+          </div>
+          <div className="flex items-center justify-start">
+            <textarea
+              name=""
+              id=""
+              className="h-[150px] w-[400px] border-[1px] border-black/50 outline-none p-[5px]"
+              value={body}
+              onChange={bodyOnchange}
+              readOnly={bodyReadOnly}
+              onClick={() => editBodyHandler()}
+            ></textarea>
             {token === null || token.userid !== creator ? (
               <></>
             ) : (
               <button
-                className="relative ml-[15px] h-[25px] w-[75px] text-[12px] border-[1px] border-[#8F43EE] rounded-[2px]"
+                className="relative ml-[15px] h-[30px] w-[100px] text-[12px] bg-[#434343] text-white"
                 onClick={() => deleteHandler()}
               >
                 Delete
@@ -151,9 +154,11 @@ const TodoDetails = ({ id, creator }: PropsType) => {
           </div>
         </div>
       </div>
-      <div className="relative h-[40%] w-[80%] flex items-center justify-center">
-        <div className="relative h-[80%] w-full flex flex-row">
-          <p>Comments: </p>
+      <div className="relative h-[50%] w-[80%] flex items-end justify-start">
+        <div className="relative h-[80%] w-[90%] gridClass2">
+          <div className="flex items-start justify-end">
+            <p>Comments: </p>
+          </div>
           <CommentSection
             todoID={dataHolder.postID}
             todoCreator={dataHolder.creatorID}
