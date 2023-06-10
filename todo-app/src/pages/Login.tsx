@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className="relative top-0 left-0 h-screen w-screen bg-white flex items-center justify-center text-black">
-      <div className="relative h-[600px] w-[400px] border-[1px] border-black flex flex-col">
+      <div className="relative h-[80%] w-full flex flex-col sm:h-[600px] sm:w-[400px] sm:border-[1px] sm:border-black">
         <div className="relative h-[20%] w-full flex items-center justify-center">
           <p className=" text-[14px]">Login As:</p>
         </div>

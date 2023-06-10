@@ -7,7 +7,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8f43ee;
+  background: rgb(56, 56, 56, 0.5);
   border-radius: 5px;
 }
 
@@ -36,6 +36,17 @@ code {
   display: grid;
   grid-template-columns: 20% 80%;
   gap: 25px;
+}
+
+@media screen and (max-width: 640px) {
+  .gridClass {
+    grid-template-columns: 30% 70%;
+    gap: 15px;
+  }
+  .gridClass2 {
+    grid-template-columns: 30% 80%;
+    gap: 15px;
+  }
 }
 
 @tailwind base;

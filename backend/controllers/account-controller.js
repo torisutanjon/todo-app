@@ -5,6 +5,15 @@ import bcrypt from "bcrypt";
 export default {
   createAccount: async (req, res) => {
     try {
+      const user = await USER_ACCOUNT_MODEL.findOne({
+        username: req.body.username,
+      });
+
+      if (user)
+        return res
+          .status(409)
+          .send({ message: "Username has already been used" });
+
       bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT), (err, salt) => {
         if (err) {
           console.log(err);

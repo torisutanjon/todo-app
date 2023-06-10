@@ -103,15 +103,15 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
 
   return (
     <div className="relative h-full w-full overflow-hidden overflow-y-auto">
-      <div className="relative h-[80px] w-[95%] flex flex-col items-end justify-between">
+      <div className="relative h-[70px] w-[95%] flex flex-col items-end justify-between">
         <input
           type="text"
           placeholder="Add Comment"
           id="add_comment_input"
-          className="relative h-[35px] w-full outline-none bg-transparent border-b-[1px] border-b-black pl-[5px] text-[14px]"
+          className="relative h-[35px] w-full text-[10px] outline-none bg-transparent border-b-[1px] border-b-black pl-[5px] sm:text-[14px]"
         />
         <button
-          className="h-[35px] w-[125px] bg-[#434343] text-[12px] text-white"
+          className="h-[20px] w-[75px] mb-[5%] bg-[#434343] text-[8px] text-white sm:h-[30px] sm:w-[100px] sm:text-[12px] sm:mb-0"
           onClick={() => addCommentHandler()}
         >
           Add Comment
@@ -123,7 +123,7 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
         comments?.map((comment: CommentTypes, index: number) => {
           return (
             <div
-              className="relative h-[165px] w-[95%] mt-[15px] flex flex-col items-end justify-between"
+              className="relative max-h-[165px] w-[95%] mt-[15px] flex flex-col items-end justify-between"
               key={`${comment}${index}`}
             >
               <textarea
@@ -143,14 +143,14 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
                   );
                   setCommentBody(updatedComments);
                 }}
-                className="relative h-[110px] w-full border-[1px] border-black bg-transparent pl-[5px] outline-none"
+                className="relative max-h-[110px] text-[10px] w-full border-[1px] border-black bg-transparent pl-[5px] outline-none my-[10px] sm:text-[14px]"
               ></textarea>
-              <div className="w-[60%] flex flex-row items-center justify-between">
+              <div className="flex flex-row items-center justify-between">
                 {token === null || token.userid !== comment.creatorID ? (
                   <></>
                 ) : (
                   <button
-                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
+                    className="relative h-[20px] w-[65px] text-[8px] outline-none bg-[#434343] text-white mx-[5px] sm:h-[30px] sm:w-[100px] sm:text-[12px]"
                     onClick={() =>
                       updateCommentHandler(comment.commentid, index)
                     }
@@ -162,7 +162,7 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
                   <></>
                 ) : (
                   <button
-                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
+                    className="relative h-[20px] w-[65px] text-[8px] outline-none bg-[#434343] text-white mx-[5px] sm:h-[30px] sm:w-[100px] sm:text-[12px]"
                     onClick={() =>
                       deleteCommentHandler(comment.commentid, todoID)
                     }
@@ -176,7 +176,7 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
                 ) : todoCreator !== token.userid &&
                   token.userid === comment.creatorID ? (
                   <button
-                    className="relative h-[40px] w-[130px] text-[12px] outline-none bg-[#434343] text-[12px] text-white"
+                    className="relative h-[20px] w-[65px] text-[8px] outline-none bg-[#434343] text-white mx-[5px] sm:h-[30px] sm:w-[100px] sm:text-[12px]"
                     onClick={() =>
                       deleteCommentHandler(comment.commentid, todoID)
                     }

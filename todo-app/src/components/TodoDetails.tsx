@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { todoAPI } from "../api";
 import jwt from "jwt-decode";
 import { CommentSection } from "./index";
+import { useMediaQuery } from "react-responsive";
+import trashIcon from "../assets/trash-icon.png";
 interface PropsType {
   id: string;
   creator: string;
@@ -100,6 +102,10 @@ const TodoDetails = ({ id, creator }: PropsType) => {
     await todoAPI.deleteTodo(id);
   };
 
+  const isMobile = useMediaQuery({
+    query: "(max-width: 480px)",
+  });
+
   useEffect(() => {
     getTodoDetailsHandler();
   }, [id]);
@@ -112,8 +118,8 @@ const TodoDetails = ({ id, creator }: PropsType) => {
     <div className="relative h-full w-full flex flex-col items-center justify-start text-black">
       <div className="relative h-[40%] w-[80%] flex items-start justify-start text-[18px]">
         <div className="relative h-[80%] w-[90%] gridClass">
-          <div className="flex items-center justify-end">
-            <p>Todo Title:</p>
+          <div className="relative flex items-center justify-end">
+            <p className="text-[12px] sm:text-[16px]">Todo Title:</p>
           </div>
           <div className="flex items-center justify-start">
             <input
@@ -123,17 +129,17 @@ const TodoDetails = ({ id, creator }: PropsType) => {
               onChange={titleOnchange}
               readOnly={titleReadOnly}
               onClick={() => editTitleHandler()}
-              className="relative pl-[5px] h-[60px] w-[400px] outline-none border-[1px] border-black/50"
+              className="relative pl-[5px] h-[30px] w-[165px] text-[10px] outline-none border-[1px] border-black/50 sm:h-[60px] sm:w-[400px] sm:text-[16px]"
             />
           </div>
           <div className="flex items-start justify-end">
-            <p>Todo Body:</p>
+            <p className="text-[12px] sm:text-[16px]">Todo Body:</p>
           </div>
-          <div className="flex items-center justify-start">
+          <div className="flex items-start justify-start">
             <textarea
               name=""
               id=""
-              className="h-[150px] w-[400px] border-[1px] border-black/50 outline-none p-[5px]"
+              className="h-[100px] w-[225px] text-[10px] border-[1px] border-black/50 outline-none p-[5px] sm:h-[150px] sm:w-[400px] sm:text-[16px]"
               value={body}
               onChange={bodyOnchange}
               readOnly={bodyReadOnly}
@@ -143,10 +149,18 @@ const TodoDetails = ({ id, creator }: PropsType) => {
               <></>
             ) : (
               <button
-                className="relative ml-[15px] h-[30px] w-[100px] text-[12px] bg-[#434343] text-white"
+                className="relative ml-[15px] h-[25px] w-[40px] flex items-center justify-center text-[12px] sm:h-[30px] sm:w-[100px] sm:bg-[#434343] sm:text-white"
                 onClick={() => deleteHandler()}
               >
-                Delete
+                {isMobile ? (
+                  <img
+                    src={trashIcon}
+                    className="relative h-[20px] w-[15px]"
+                    alt=""
+                  />
+                ) : (
+                  "Delete"
+                )}
               </button>
             )}
             <br />
@@ -157,7 +171,7 @@ const TodoDetails = ({ id, creator }: PropsType) => {
       <div className="relative h-[50%] w-[80%] flex items-end justify-start">
         <div className="relative h-[80%] w-[90%] gridClass2">
           <div className="flex items-start justify-end">
-            <p>Comments: </p>
+            <p className="text-[12px] sm:text-[16px]">Comments: </p>
           </div>
           <CommentSection
             todoID={dataHolder.postID}

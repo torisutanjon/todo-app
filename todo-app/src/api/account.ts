@@ -16,8 +16,8 @@ const accountAPI = {
         })
         window.alert(res?.data?.message)
         window.location.href = "/login"
-        } catch (error) {
-            console.log(error)
+        } catch (error:any) {
+            window.alert(error?.response?.data?.message)
         }
     },
     loginAccount: async (username: string, password: string) => {
