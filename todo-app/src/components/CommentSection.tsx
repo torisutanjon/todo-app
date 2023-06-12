@@ -126,25 +126,32 @@ const CommentSection = ({ todoID, todoCreator }: PropTypes) => {
               className="relative max-h-[165px] w-[95%] mt-[15px] flex flex-col items-end justify-between"
               key={`${comment}${index}`}
             >
-              <textarea
-                id="update_comment_input"
-                value={commentBody === undefined ? "" : commentBody[index].body}
-                readOnly={
-                  token === null || token.userid !== comment.creatorID
-                    ? true
-                    : false
-                }
-                onChange={(e) => {
-                  const updatedComment = { ...comment, body: e.target.value };
-                  const updatedComments = comments?.map((originalComment) =>
-                    originalComment.commentid === comment.commentid
-                      ? updatedComment
-                      : originalComment
-                  );
-                  setCommentBody(updatedComments);
-                }}
-                className="relative max-h-[110px] text-[10px] w-full border-[1px] border-black bg-transparent pl-[5px] outline-none my-[10px] sm:text-[14px]"
-              ></textarea>
+              <div className="h-full w-full flex flex-row items-center justify-between">
+                <div className="max-w-[20%] flex items-center justify-center">
+                  <p className="font-bold">{comment.creatorName}:</p>
+                </div>
+                <textarea
+                  id="update_comment_input"
+                  value={
+                    commentBody === undefined ? "" : commentBody[index].body
+                  }
+                  readOnly={
+                    token === null || token.userid !== comment.creatorID
+                      ? true
+                      : false
+                  }
+                  onChange={(e) => {
+                    const updatedComment = { ...comment, body: e.target.value };
+                    const updatedComments = comments?.map((originalComment) =>
+                      originalComment.commentid === comment.commentid
+                        ? updatedComment
+                        : originalComment
+                    );
+                    setCommentBody(updatedComments);
+                  }}
+                  className="relative max-h-[110px] text-[10px] w-[80%] border-[1px] border-black bg-transparent pl-[5px] outline-none my-[10px] sm:text-[14px]"
+                ></textarea>
+              </div>
               <div className="flex flex-row items-center justify-between">
                 {token === null || token.userid !== comment.creatorID ? (
                   <></>
